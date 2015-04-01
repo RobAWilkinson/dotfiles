@@ -1,0 +1,13 @@
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[user]
+	name = Robert Wilkinson
+	email = wilkinson.robert.a@gmail.com
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	lp = log -p
+[core]
+	editor = vim
