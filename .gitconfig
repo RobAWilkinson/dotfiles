@@ -9,5 +9,13 @@
 	br = branch
 	co = checkout
 	lp = log -p
+  cm = commit -m
 [core]
-	editor = vim
+	editor = nvim
+  excludesfile = ~/.gitignore
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
