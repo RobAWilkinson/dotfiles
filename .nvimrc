@@ -13,13 +13,13 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fireplace'
 Plug 'leafgarland/typescript-vim'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'sheerun/vim-wombat-scheme'
 Plug 'rking/ag.vim'
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'benekastah/neomake'
-" Plug 'kien/rainbow_parentheses.vim'
-" Plug 'Raimondi/delimitMate'
+" Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'Raimondi/delimitMate'
 Plug 'pangloss/vim-javascript'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -36,6 +36,12 @@ Plug 'tpope/vim-rails'
 " Plug 'bling/vim-bufferline'
 " Plug 'mkitt/tabline.vim'
 Plug 'taohex/lightline-buffer'
+Plug 'guns/vim-clojure-static'
+Plug 'venantius/vim-cljfmt'
+Plug 'tpope/vim-vividchalk'
+Plug 'godlygeek/tabular'
+Plug 'trevordmiller/nova-vim'
+Plug 'szw/vim-tags'
 
 
 
@@ -49,6 +55,7 @@ Plug 'honza/vim-snippets'
 
 call plug#end()
 set shell=/bin/sh 
+
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 syntax on
 filetype plugin indent on
@@ -61,7 +68,8 @@ map <C-D> :NERDTreeToggle<CR>
 "set colorscheme
 syntax enable
 
-colorscheme wombat
+set background=light
+colorscheme nova
 
 
 set tabstop=2
@@ -82,13 +90,17 @@ set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set foldenable          " enable folding
-set foldlevelstart=10   " open most folds by default
+set foldlevelstart=5   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 let mapleader=" "       " leader is space
 " remap ag to , A
 nnoremap <leader>a :Ag  
 nnoremap gV `[v`]
+nnoremap <leader>f :NERDTreeFind<CR>
 
+
+" remap jj in normal to esc
+inoremap jj <ESC>:
 nnoremap <leader><TAB> :bnext<CR>
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -139,7 +151,7 @@ let g:lightline_buffer_separator_icon = ' '
 
 let g:lightline_buffer_show_bufnr = 1
 let g:lightline_buffer_rotate = 2
-let g:lightline_buffer_fname_mod = ':p:.'
+let g:lightline_buffer_fname_mod = ':t'
 let g:lightline_buffer_excludes = ['vimfiler']
 
 let g:lightline_buffer_maxflen = 30
@@ -287,10 +299,44 @@ au BufRead,BufNewFile *.ejs setfiletype html
 let g:location_is_open = 0
 
 " Rainbow parends
-" au VimEnter * RainbowParenthesesToggle
+" augroup rainbow_lisp
+"   autocmd!
+"   autocmd FileType lisp,clojure,scheme RainbowParentheses
+" augroup END
+" let g:rainbow#max_level = 16
+" let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+" let g:rbpt_colorpairs = [
+"     \ ['brown',       'RoyalBlue3'],
+"     \ ['Darkblue',    'SeaGreen3'],
+"     \ ['darkgray',    'DarkOrchid3'],
+"     \ ['darkgreen',   'firebrick3'],
+"     \ ['darkcyan',    'RoyalBlue3'],
+"     \ ['darkred',     'SeaGreen3'],
+"     \ ['darkmagenta', 'DarkOrchid3'],
+"     \ ['brown',       'firebrick3'],
+"     \ ['gray',        'RoyalBlue3'],
+"     \ ['black',       'SeaGreen3'],
+"     \ ['darkmagenta', 'DarkOrchid3'],
+"     \ ['Darkblue',    'firebrick3'],
+"     \ ['darkgreen',   'RoyalBlue3'],
+"     \ ['darkcyan',    'SeaGreen3'],
+"     \ ['darkred',     'DarkOrchid3'],
+"     \ ['red',         'firebrick3'],
+"     \ ]
+" let g:rbpt_max = 16
+" let g:rbpt_loadcmd_toggle = 0
+
+
+" au VimEnter * RainbowParentheses
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
+
+
+
+
+
+
 " terminal esc remap neovim only
 tnoremap <Esc> <C-\><C-n>
 " enable mouse
@@ -324,3 +370,8 @@ nnoremap <F5> :GundoToggle<CR>
 " Strip whitespace
 nmap <Leader>s :StripWhitespace<CR>
 "
+"CTAGS Config
+set exrc
+set secure
+let g:vim_tags_auto_generate = 1
+

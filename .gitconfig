@@ -2,7 +2,7 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [user]
-	name = Robert Wilkinson
+	name = Rob Wilkinson
 	email = wilkinson.robert.a@gmail.com
 [alias]
 	st = status
@@ -12,10 +12,32 @@
   cm = commit -m
 [core]
 	editor = nvim
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/robertwilkinson/.gitignore
+	ignorecase = false
 [push]
 	default = simple
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[merge]
+	tool = opendiff
+[difftool "sourcetree"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	trustExitCode = true
+[http "https://git.45xy.flynnhub.com"]
+	sslCAInfo = /Users/robertwilkinson/.flynn/ca-certs/flynn-1476423598.pem
+[credential "https://git.45xy.flynnhub.com"]
+	helper = /usr/local/bin/flynn git-credentials
+[http "https://git.vkrv.flynnhub.com"]
+	sslCAInfo = /Users/robertwilkinson/.flynn/ca-certs/flynn-1477518236.pem
+[credential "https://git.vkrv.flynnhub.com"]
+	helper = /usr/local/bin/flynn git-credentials
